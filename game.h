@@ -2,10 +2,30 @@
 #define GAME_H
 
 
-class game
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QMouseEvent>
+
+#include "enemy.h"
+#include "player.h"
+
+
+class Game: public QGraphicsView
 {
 public:
-    game();
+    Game(QWidget * parent=nullptr);
+
+    QGraphicsScene *scene;
+
+    Player *player;
+
+    int world=1;
+    int wave=1;
+
+    void attackEnemy();
+    void spawnEnemy();
+
+
 };
 
 #endif // GAME_H
