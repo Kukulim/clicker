@@ -1,15 +1,15 @@
 #include "enemy.h"
 #include <QFont>
+#include <QObject>
 
-#include <QDebug>
 
-Enemy::Enemy()
+Enemy::Enemy(QGraphicsItem *parent):  QObject(), QGraphicsPixmapItem(parent)
 {
     setPos(430,150);
     setPixmap(QPixmap(":/images/unicorn.png"));
     health=10;
 
-    QGraphicsTextItem *healtBar = new QGraphicsTextItem(this);
+    healtBar = new QGraphicsTextItem(this);
 
     healtBar->setPlainText("HP:" + QString::number(health));
     healtBar->setDefaultTextColor(Qt::red);
@@ -21,5 +21,12 @@ void Enemy::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     health--;
     healtBar->setPlainText("HP:" + QString::number(health));
-    qDebug()<<health;
+    if(health==0)
+    {
+        scene()->removeItem(this);
+        emit enemykilled();
+        delete this;
+    }
+
 }
+

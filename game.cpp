@@ -2,6 +2,7 @@
 #include "enemy.h"
 
 #include <QDebug>
+#include <QTimer>
 
 Game::Game(QWidget * parent)
 {
@@ -21,12 +22,15 @@ Game::Game(QWidget * parent)
 
 
     show();
-
 }
 
 void Game::spawnEnemy()
 {
-    Enemy *enemy = new Enemy();
+    enemy = new Enemy();
     scene->addItem(enemy);
 
+    //make connection
+    connect(enemy,SIGNAL(enemykilled()),this,SLOT(spawnEnemy()));
+
+    wave++;
 }

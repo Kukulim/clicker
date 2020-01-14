@@ -5,16 +5,20 @@
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
 #include <QGraphicsSceneMouseEvent>
+#include <QObject>
 
-class Enemy: public QGraphicsPixmapItem
+class Enemy:public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
 public:
-    Enemy();
+    Enemy(QGraphicsItem * parent=nullptr);
 
     int health=0;
     QGraphicsTextItem *healtBar;
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
+signals:
+    void enemykilled();
 
 };
 

@@ -12,19 +12,21 @@
 
 class Game: public QGraphicsView
 {
+    Q_OBJECT
 public:
     Game(QWidget * parent=nullptr);
 
     QGraphicsScene *scene;
 
     Player *player;
+    Enemy *enemy;
 
     int world=1;
     int wave=1;
 
     void attackEnemy();
+public slots:
     void spawnEnemy();
-
 
 };
 
