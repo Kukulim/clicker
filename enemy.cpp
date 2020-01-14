@@ -14,7 +14,7 @@ Enemy::Enemy(QGraphicsItem *parent):  QObject(), QGraphicsPixmapItem(parent)
     healtBar->setPlainText("HP:" + QString::number(health));
     healtBar->setDefaultTextColor(Qt::red);
     healtBar->setFont(QFont("times",16));
-    healtBar->setPos(75,-50);
+    healtBar->setPos(150,-50);
 }
 
 void Enemy::mousePressEvent(QGraphicsSceneMouseEvent *event)

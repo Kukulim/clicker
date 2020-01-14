@@ -8,6 +8,7 @@
 
 #include "enemy.h"
 #include "player.h"
+#include "boss.h"
 
 
 class Game: public QGraphicsView
@@ -20,6 +21,7 @@ public:
 
     Player *player;
     Enemy *enemy;
+    Boss *boss;
 
     int world=1;
     int wave=1;
@@ -27,6 +29,7 @@ public:
     void attackEnemy();
 public slots:
     void spawnEnemy();
+    void spawnBoss();
 
 };
 

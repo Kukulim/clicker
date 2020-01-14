@@ -26,6 +26,12 @@ Game::Game(QWidget * parent)
 
 void Game::spawnEnemy()
 {
+    if(wave==10)
+    {
+        spawnBoss();
+        wave=1;
+        return;
+    }
     enemy = new Enemy();
     scene->addItem(enemy);
 
@@ -33,4 +39,11 @@ void Game::spawnEnemy()
     connect(enemy,SIGNAL(enemykilled()),this,SLOT(spawnEnemy()));
 
     wave++;
+}
+
+void Game::spawnBoss()
+{
+    boss = new Boss();
+    scene->addItem(boss);
+    connect(boss,SIGNAL(enemykilled()),this,SLOT(spawnEnemy()));
 }
